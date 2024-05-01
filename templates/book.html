@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{% if book %}Edit Book{% else %}Add Book{% endif %}</h1>
+<form method="post" action="{{ url_for('book') }}">
+    {% if book %}
+    <input type="hidden" name="book_id" value="{{ book.book_id }}">
+    {% endif %}
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" name="title" value="{{ book.title if book else '' }}" required>
+    </div>
+    <div class="form-group">
+        <label for="author">Author</label>
+        <input type="text" class="form-control" id="author" name="author" value="{{ book.author if book else '' }}" required>
+    </div>
+    <div class="form-group">
+        <label for="user_id">User</label>
+        <select class="form-control" id="user_id" name="user_id" required>
+            {% for user in users %}
+            <option value="{{ user.user_id }}" {% if book and book.user_id == user.user_id %}selected{% endif %}>{{ user.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+{% endblock %}
+
+
+   
+   

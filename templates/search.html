@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Search Books</h1>
+<form method="post" action="{{ url_for('search') }}">
+    <div class="form-group">
+        <label for="search_query">Search Query</label>
+        <input type="text" class="form-control" id="search_query" name="search_query" placeholder="Enter title, author, or user name">
+    </div>
+    <div class="form-group">
+        <label for="sort_by">Sort By</label>
+        <select class="form-control" id="sort_by" name="sort_by">
+            <option value="title">Title</option>
+            <option value="author">Author</option>
+            <option value="name">User Name</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+<h2 class="mt-4">Results</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>User</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+        <tr>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.name }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

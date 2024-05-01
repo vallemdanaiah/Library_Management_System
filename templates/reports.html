@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Reports</h1>
+
+<h2>User Count</h2>
+<p>Total number of users: {{ user_count }}</p>
+
+<h2>Book Count</h2>
+<p>Total number of books: {{ book_count }}</p>
+
+<h2>Top Authors</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Author</th>
+            <th>Book Count</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for author in top_authors %}
+        <tr>
+            <td>{{ author.author }}</td>
+            <td>{{ author.book_count }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
